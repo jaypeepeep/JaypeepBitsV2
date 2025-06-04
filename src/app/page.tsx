@@ -309,13 +309,36 @@ export default function Portfolio() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-    // Reset form
-    setFormData({ name: "", email: "", message: "" })
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("https://formspree.io/f/xyzzlneb", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      })
+    });
+
+    if (response.ok) {
+      console.log("Form submitted successfully");
+      setFormData({ name: "", email: "", message: "" });
+      // Optionally show a success message to the user
+    } else {
+      console.error("Form submission failed");
+      // Optionally show an error message
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+    // Optionally show a network error message
   }
+};
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
