@@ -148,60 +148,74 @@ const skillIcons = {
 const skills = Object.keys(skillIcons)
 
 const projects = [
-  {
+    {
     id: 1,
-    title: "E-commerce Platform",
-    description: "Full-stack e-commerce solution with React and Node.js",
-    github: "https://github.com/username/ecommerce",
-    image: "/placeholder.svg?height=200&width=300",
+  title: "Estate Doc Prep",
+description: "A document automation platform for generating U.S. living trust documents through guided forms. Supports multiple user roles to manage workflows and assist clients in the estate planning process.",
+  github: null, // or omit this field
+  private: true,
+  image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "React-based task management with real-time updates",
-    github: "https://github.com/username/task-app",
+    title: "Ibaybay Mo Isasalin Ko",
+    description: "This project provides an easy-to-use tool for converting between Baybayin and Latin scripts, with features like bidirectional translation, handwriting recognition, and virtual keyboards for both scripts.",
+    github: "https://github.com/jaypeepeep/Ibaybay-Mo-Isasalin-Ko",
+      private: false,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: 3,
-    title: "Weather Dashboard",
-    description: "Weather app with location-based forecasts",
-    github: "https://github.com/username/weather-app",
+    title: "D’Tilapia Compiler",
+    description: "A compiler designed for a proposed programming language, D'Tilapia, inspired by discrete mathematics. The project features a lexical and syntax analyzer for processing and understanding code, along with a user-friendly interface.",
+    github: "https://github.com/jaypeepeep/D-Tilapia-Compiler",
+      private: false,
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: 4,
-    title: "Portfolio Website",
-    description: "Personal portfolio built with Next.js and Tailwind",
-    github: "https://github.com/username/portfolio",
+    title: "DoorMe",
+    description: "This website helps students find dormitories near their university. It offers easy registration, login, and interactive maps with customizable filters to find the best housing options.",
+    github: "https://github.com/jaypeepeep/DoorMe",
+    private: false,
+    image: "/placeholder.svg?height=200&width=300",
+  },
+  {
+    id: 5,
+    title: "Komyu-Sagip",
+    description: "This app helps you stay safe with three ways to ask for help: anonymously, by posting, or in an emergency. Its social media features make it easy to share information and get quick responses when needed.",
+    github: "https://github.com/jaypeepeep/Komyu-Sagip-Mobile-Application",
+    private: false,
+    image: "/placeholder.svg?height=200&width=300",
+  },
+    {
+    id: 6,
+    title: "SC-β-VAE-GAN",
+    description: "A tool that helps generate and fix missing handwriting data from pen tablets. The tool makes it easier to work with small or incomplete datasets, improving data accuracy and usability through a simple interface.",
+    github: "https://github.com/jaypeepeep/SC-Beta-VAE-GAN",
+    private: false,
     image: "/placeholder.svg?height=200&width=300",
   },
 ]
 
 const workExperience = [
   {
-    year: "2024",
-    title: "Senior Frontend Developer",
-    company: "Tech Solutions Inc.",
-    description: "Led frontend development team, implemented modern React applications",
+    year: "Feb 2025 - Present",
+    title: "Backend-focused Full Stack Developer",
+    company: "The Oscar's Real Estate & Property Management",
+    description: "Led the development of a secure document automation platform for U.S. users, with role-based access and integrated payments, using React, Node.js, MySQL, Stripe, and Google Cloud.",
   },
   {
-    year: "2022",
-    title: "Full Stack Developer",
-    company: "Digital Agency Co.",
-    description: "Developed web applications using React, Node.js, and MongoDB",
+    year: "Sep 2024 - Feb 2025",
+    title: "Software Developer",
+    company: "8Box Solutions",
+    description: "Built and customized admin panels, payroll systems, and multi-level login portals while managing complex databases using PHP, JavaScript, MySQL, and PHPRunner.",
   },
   {
-    year: "2021",
-    title: "Junior Developer",
-    company: "StartUp Ventures",
-    description: "Built responsive websites and learned modern development practices",
-  },
-  {
-    year: "2020",
-    title: "Frontend Intern",
-    company: "Web Design Studio",
-    description: "Assisted in creating user interfaces and gained hands-on experience",
+    year: "Jul 2024 - Sep 2024",
+    title: "Software Developer Intern",
+    company: "8Box Solutions",
+    description: "Improved and developed admin panels tailored to client needs using PHP, JavaScript, MySQL, and PHPRunner.",
   },
 ]
 
@@ -270,13 +284,16 @@ function AppSidebar() {
 
       <SidebarFooter className="p-6">
         <div className="flex justify-center space-x-4">
-          <Link href="https://github.com" className="text-muted-foreground hover:text-green-500 transition-colors">
+          <Link href="https://github.com/jaypeepeep"   target="_blank"
+  rel="noopener noreferrer" className="text-muted-foreground hover:text-green-500 transition-colors">
             <Github className="w-5 h-5" />
           </Link>
-          <Link href="https://linkedin.com" className="text-muted-foreground hover:text-green-500 transition-colors">
+          <Link href="https://www.linkedin.com/in/john-patrick-lagatuz/"   target="_blank"
+  rel="noopener noreferrer" className="text-muted-foreground hover:text-green-500 transition-colors">
             <Linkedin className="w-5 h-5" />
           </Link>
-          <Link href="https://facebook.com" className="text-muted-foreground hover:text-green-500 transition-colors">
+          <Link href="https://www.facebook.com/jeypeeps/"   target="_blank"
+  rel="noopener noreferrer" className="text-muted-foreground hover:text-green-500 transition-colors">
             <Facebook className="w-5 h-5" />
           </Link>
         </div>
@@ -346,12 +363,6 @@ export default function Portfolio() {
 <p className="text-lg text-gray-300 leading-relaxed mb-4">
   Whether I’m working with a team or helping clients, I enjoy turning ideas into something that actually works and makes life easier. I'm always excited to learn something new and take on projects that help me grow.
 </p>
-
-
-
-
-
-
 
             <div className="flex space-x-4 mt-8">
                   <Button
@@ -448,6 +459,11 @@ export default function Portfolio() {
               <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
                 My <span className="text-green-500">Projects</span>
               </h2>
+                      <div className="text-center mb-12">
+      <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+       Whether I’m working solo or with a team, I make sure every project has a clear purpose and is grounded in solid research. Some are built to solve business or client needs, while others explore new ideas just for the fun of it. Either way, they’re all made with intention. Feel free to check them out.
+      </p>
+    </div>
               <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {projects.map((project) => (
                   <Card
@@ -464,16 +480,20 @@ export default function Portfolio() {
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform"
                         />
                         <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Button
-                              variant="outline"
-                              className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
-                            >
-                               <Github className="w-4 h-4 mr-2" />
-                              View Code
-                              <ExternalLink className="w-4 h-4 ml-2" />
-                            </Button>
-                          </Link>
+                     {project.github ? (
+  <Link href={project.github} target="_blank" rel="noopener noreferrer">
+    <Button
+      variant="outline"
+      className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
+    >
+      <Github className="w-4 h-4 mr-2" />
+      View Code
+      <ExternalLink className="w-4 h-4 ml-2" />
+    </Button>
+  </Link>
+) : project.private ? (
+  <div className="text-sm text-gray-300 italic">Private repository</div>
+) : null}
                         </div>
                       </div>
                       <div className="p-6">
@@ -498,21 +518,39 @@ export default function Portfolio() {
                   {/* Timeline line */}
                   <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-green-400"></div>
 
-                  {workExperience.map((job, index) => (
-                    <div key={index} className="relative flex items-start mb-12">
-                      {/* Timeline dot */}
-                      <div className="absolute left-6 w-4 h-4 bg-green-400 rounded-full border-4 border-gray-900 shadow-lg"></div>
-                          {/* Content */}
-                      <div className="ml-16">
-                        <Badge variant="outline" className="mb-2 border-green-400 text-green-400">
-                          {job.year}
-                        </Badge>
-                        <h3 className="text-xl font-semibold text-white mb-1">{job.title}</h3>
-                        <h4 className="text-lg text-green-400 mb-3">{job.company}</h4>
-                        <p className="text-gray-300">{job.description}</p>
-                      </div>
-                    </div>
-                  ))}
+             {workExperience.map((job, index) => (
+  <div key={index} className="relative flex items-start mb-12">
+    {/* Timeline dot */}
+    <div className="absolute left-6 w-4 h-4 bg-green-400 rounded-full border-4 border-gray-900 shadow-lg"></div>
+    {/* Content */}
+    <div className="ml-16">
+      <Badge variant="outline" className="mb-2 border-green-400 text-green-400">
+        {job.year}
+      </Badge>
+      <h3 className="text-xl font-semibold text-white mb-1">{job.title}</h3>
+      <h4 className="text-lg text-green-400 mb-3">{job.company}</h4>
+      <p className="text-gray-300">{job.description}</p>
+    </div>
+  </div>
+))}
+
+{/* Call to Action - Resume */}
+<div className="relative flex items-start mb-12">
+  <div className="absolute left-6 w-4 h-4 bg-green-400 rounded-full border-4 border-gray-900 shadow-lg"></div>
+  <div className="ml-16 bg-gray-800 border border-green-500 rounded-md p-6">
+    <h3 className="text-xl font-semibold text-white mb-2">Think we could turn your next opportunity into my next experience?</h3>
+    <p className="text-gray-300 mb-4">Feel free to check out my resume. I'm always open to new opportunities to build, collaborate, and make something meaningful.</p>
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+    >
+      View Resume
+    </a>
+  </div>
+</div>
+
                 </div>
               </div>
             </div>
@@ -532,31 +570,34 @@ export default function Portfolio() {
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <Mail className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-700">john.doe@email.com</span>
+                      <span className="text-gray-700">patrick.zutagal@gmail.com</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Phone className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-700">+1 (555) 123-4567</span>
+                      <span className="text-gray-700">+63 966 349 2811</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <MapPin className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-700">San Francisco, CA</span>
+                      <span className="text-gray-700">Cavite, Philippines</span>
                     </div>
                   </div>
 
                   <div className="mt-8">
                     <h4 className="text-lg font-semibold mb-4 text-green-500">Follow Me</h4>
                     <div className="flex space-x-4">
-                      <Link href="https://github.com" className="text-gray-600 hover:text-green-500 transition-colors">
+                      <Link href="https://github.com/jaypeepeep"   target="_blank"
+  rel="noopener noreferrer" className="text-gray-600 hover:text-green-500 transition-colors">
                         <Github className="w-6 h-6" />
                       </Link>
                       <Link
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/john-patrick-lagatuz/"   target="_blank"
+  rel="noopener noreferrer"
                         className="text-gray-600 hover:text-green-500 transition-colors"
                       >
                         <Linkedin className="w-6 h-6" />
                       </Link>
-                      <Link href="https://facebook.com" className="text-gray-600 hover:text-green-500 transition-colors">
+                      <Link href="https://www.facebook.com/jeypeeps/"   target="_blank"
+  rel="noopener noreferrer" className="text-gray-600 hover:text-green-500 transition-colors">
                         <Facebook className="w-6 h-6" />
                       </Link>
                     </div>
