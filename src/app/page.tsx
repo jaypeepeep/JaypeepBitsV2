@@ -144,9 +144,6 @@ const skillIcons = {
   Canva: "🖌️",
 }
 
-
-const skills = Object.keys(skillIcons)
-
 const projects = [
     {
     id: 1,
@@ -232,7 +229,7 @@ function AppSidebar() {
       <SidebarHeader className="p-6">
         <div className="flex flex-col items-center space-y-4">
           <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-green-500">
-            <Image src="/placeholder.svg?height=96&width=96" alt="Profile Picture" fill className="object-cover" />
+            <Image src="/images/profile/profileSidebar.png?height=96&width=96" alt="Profile Picture" fill className="object-cover" />
           </div>
           <div className="text-center">
             <h2 className="font-bold text-lg">John Patrick Lagatuz</h2>
@@ -374,37 +371,45 @@ const handleSubmit = async (e: React.FormEvent) => {
         <AppSidebar />
 
         <main className="flex-1">
-          {/* About Section - Dark Theme */}
           <section id="home" className="min-h-screen bg-gray-900 text-white flex items-center">
-          <div className="w-full max-w-screen-xl px-8 py-16 mx-auto">
+  <div className="w-full max-w-screen-xl px-8 py-16 mx-auto flex flex-col md:flex-row items-center md:justify-between">
+    
+    {/* Left: Text Content */}
+    <div className="max-w-2xl">
+      <DynamicHeading />
+      <p className="text-lg text-gray-300 leading-relaxed mb-4">
+        I’m a Filipino <strong className="text-green-400">backend-focused full-stack developer</strong>, a software engineer, and a graduating Computer Science student with <strong className="text-green-400">4 years of hands-on experience</strong> building real-world projects.
+      </p>
 
-              <div className="max-w-4xl">
-               <DynamicHeading />
-<p className="text-lg text-gray-300 leading-relaxed mb-4">
-  I’m a Filipino <strong className="text-green-400">backend-focused full-stack developer</strong>, a software engineer, and a graduating Computer Science student with <strong className="text-green-400">4 years of hands-on experience</strong> building real-world projects.
-</p>
-<p className="text-lg text-gray-300 leading-relaxed mb-4">
-  Whether I’m working with a team or helping clients, I enjoy turning ideas into something that actually works and makes life easier. I'm always excited to learn something new and take on projects that help me grow.
-</p>
+      <div className="flex space-x-4 mt-8">
+        <Button
+          className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 text-lg"
+          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          Get In Touch
+        </Button>
+        <Button
+          variant="outline"
+          className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-3 text-lg"
+          onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+        >
+          View My Work
+        </Button>
+      </div>
+    </div>
 
-            <div className="flex space-x-4 mt-8">
-                  <Button
-                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 text-lg"
-                    onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  >
-                    Get In Touch
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-3 text-lg"
-                    onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                  >
-                    View My Work
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </section>
+    {/* Right: Image */}
+<div className="mt-12 md:mt-0 w-full flex justify-center">
+  <img
+    src="/images/profile/profileHome.png"
+    alt="Oscar - Full Stack Developer"
+    className="w-72 h-72 md:w-96 md:h-96 object-cover"
+  />
+</div>
+
+  </div>
+</section>
+
 
               {/* About Section - Light Theme */}
           <section id="about" className="min-h-screen bg-white flex items-center">
@@ -564,7 +569,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     <h3 className="text-xl font-semibold text-white mb-2">Think we could turn your next opportunity into my next experience?</h3>
     <p className="text-gray-300 mb-4">Feel free to check out my resume. I'm always open to new opportunities to build, collaborate, and make something meaningful.</p>
     <a
-      href="/resume.pdf"
+      href="https://drive.google.com/file/d/1U2Dl4_VnjHVWrKhfRNaonW7wFjGgiOvM/view?usp=sharing"
       target="_blank"
       rel="noopener noreferrer"
       className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
@@ -584,8 +589,13 @@ const handleSubmit = async (e: React.FormEvent) => {
           <section id="contact" className="min-h-screen bg-white flex items-center">
             <div className="container mx-auto px-8 py-16">
               <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-                Get In <span className="text-green-500">Touch</span>
+                Let's <span className="text-green-500">Work Together</span>
               </h2>
+                         <div className="text-center mb-12">
+                  <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                     When I’m not coding, I’m usually thinking up new app ideas, enjoying programming memes, or bookmarking dev tips that I may or may not ever check again. I also make time to check my emails regularly, so feel free to reach out if you’re interested in collaborating or looking for someone to join your team :D
+                  </p>
+                </div>
               <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 {/* Contact Info */}
                 <div>
