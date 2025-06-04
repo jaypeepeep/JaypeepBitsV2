@@ -43,28 +43,37 @@ const aboutInfo = [
   {
     title: "Education",
     icon: "🎓",
-    items: ["Bachelor of Computer Science", "University of Technology", "Graduated: 2020", "GPA: 3.8/4.0"],
+    items: ["Bachelor of Science in Computer Science (BSCS)", "Polytechnic University of the Philippines - Sta. Mesa", "Expected Graduation: 2025", "CHED Merit Scholar"],
   },
   {
     title: "Personal Info",
     icon: "👤",
-    items: ["Age: 26", "Location: San Francisco, CA", "Languages: English, Spanish", "Hobbies: Photography, Hiking"],
+    items: ["Age: 21", "Location: Cavite, Philippines", "Languages: English, Filipino", "Hobbies: Coding, Gaming, traveling, trying new foods, and spending time on social media."],
   },
-  {
-    title: "Certifications",
-    icon: "🏆",
-    items: [
-      "AWS Certified Developer",
-      "Google Cloud Professional",
-      "React Developer Certification",
-      "Scrum Master Certified",
-    ],
-  },
-  {
-    title: "Interests",
-    icon: "💡",
-    items: ["Machine Learning", "Open Source Contributing", "Tech Blogging", "Mentoring Developers"],
-  },
+ {
+  title: "Certifications",
+  icon: "🏆",
+  items: [
+    "DICT-ICT017 Advanced Level of Software Engineering",
+    "DICT-ICT013 Intermediate Level of Software Engineering",
+    "DICT-WD001 Principles of Web Development and Introduction to HTML",
+    "DICT-WD002 Using HTML and CSS to Design a Website",
+    "DICT-WD003 Basic JavaScript for Web Development",
+  ],
+},
+{
+  title: "Interests",
+  icon: "💡",
+  items: [
+    "Backend Development",
+    "Database Design & Management",
+    "System Administration",
+    "Exploring New Technologies",
+    "Research & Problem Solving",
+    "Building Side Projects"
+  ],
+}
+
 ]
 
 const groupedSkills = {
