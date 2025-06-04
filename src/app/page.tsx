@@ -2,10 +2,11 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
+  Sparkles,
   User,
   Code,
   Briefcase,
@@ -13,7 +14,7 @@ import {
   Mail,
   Github,
   Linkedin,
-  Twitter,
+  Facebook,
   ExternalLink,
   MapPin,
   Phone,
@@ -36,21 +37,104 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar"
 
+const rotatingWords = ["develop", "create", "research", "code", "innovate"]
+
+const aboutInfo = [
+  {
+    title: "Education",
+    icon: "🎓",
+    items: ["Bachelor of Computer Science", "University of Technology", "Graduated: 2020", "GPA: 3.8/4.0"],
+  },
+  {
+    title: "Personal Info",
+    icon: "👤",
+    items: ["Age: 26", "Location: San Francisco, CA", "Languages: English, Spanish", "Hobbies: Photography, Hiking"],
+  },
+  {
+    title: "Certifications",
+    icon: "🏆",
+    items: [
+      "AWS Certified Developer",
+      "Google Cloud Professional",
+      "React Developer Certification",
+      "Scrum Master Certified",
+    ],
+  },
+  {
+    title: "Interests",
+    icon: "💡",
+    items: ["Machine Learning", "Open Source Contributing", "Tech Blogging", "Mentoring Developers"],
+  },
+]
+
+const groupedSkills = {
+  "Programming Languages": [
+    "PHP", "JavaScript", "Python", "HTML", "CSS", "SQL", "Java", "Kotlin", "XML",
+  ],
+  "Frameworks & Libraries": [
+    "React", "Node.js", "Express.js", "Flask", "Jupyter", "Axios", "PyQt5", "Tailwind CSS",
+  ],
+  "Databases": [
+    "MySQL", "SQLite", "Oracle",
+  ],
+  "Developer Tools": [
+    "PHPRunner", "phpMyAdmin", "Stripe", "Google Cloud", "VSCode", "Postman", "WAMP",
+    "XAMPP", "Android Studio", "Git", "GitHub", "SQL Maestro", "Microsoft Office",
+  ],
+  "Design Tools": [
+    "Figma", "Canva",
+  ],
+}
+
+
 // Skill icons mapping
 const skillIcons = {
-  React: "⚛️",
-  TypeScript: "📘",
-  "Next.js": "▲",
-  "Node.js": "🟢",
-  Python: "🐍",
+  // Programming Languages
+  PHP: "🐘",
   JavaScript: "💛",
-  "HTML/CSS": "🎨",
+  Python: "🐍",
+  HTML: "📄",
+  CSS: "🎨",
+  SQL: "🗄️",
+  Java: "☕",
+  Kotlin: "🧬",
+  XML: "📘",
+
+  // Frameworks & Libraries
+  React: "⚛️",
+  "Node.js": "🟢",
+  "Express.js": "🚂",
+  Flask: "🌶️",
+  Jupyter: "📓",
+  Axios: "🔗",
+  PyQt5: "🖼️",
+  "Tailwind CSS": "💨",
+
+  // Databases
+  MySQL: "🐬",
+  SQLite: "📁",
+  Oracle: "🔶",
+
+  // Developer Tools
+  PHPRunner: "🛠️",
+  phpMyAdmin: "🧰",
+  Stripe: "💳",
+  "Google Cloud": "☁️",
+  VSCode: "🖥️",
+  Postman: "📬",
+  WAMP: "🧃",
+  XAMPP: "🔥",
+  "Android Studio": "📱",
   Git: "📝",
-  Docker: "🐳",
-  AWS: "☁️",
-  MongoDB: "🍃",
-  PostgreSQL: "🐘",
+  GitHub: "🐙",
+  "SQL Maestro": "📊",
+  "Microsoft Office": "📎",
+
+  // Design Tools
+  Figma: "🎨",
+  Canva: "🖌️",
 }
+
 
 const skills = Object.keys(skillIcons)
 
@@ -128,7 +212,7 @@ function AppSidebar() {
             <Image src="/placeholder.svg?height=96&width=96" alt="Profile Picture" fill className="object-cover" />
           </div>
           <div className="text-center">
-            <h2 className="font-bold text-lg">John Doe</h2>
+            <h2 className="font-bold text-lg">John Patrick Lagatuz</h2>
             <p className="text-sm text-muted-foreground">Full Stack Developer</p>
           </div>
         </div>
@@ -136,6 +220,12 @@ function AppSidebar() {
 
       <SidebarContent className="px-4">
         <SidebarMenu>
+             <SidebarMenuItem>
+            <SidebarMenuButton onClick={() => scrollToSection("home")} className="w-full justify-start">
+              <Sparkles className="w-4 h-4" />
+              <span>Home</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton onClick={() => scrollToSection("about")} className="w-full justify-start">
               <User className="w-4 h-4" />
@@ -177,8 +267,8 @@ function AppSidebar() {
           <Link href="https://linkedin.com" className="text-muted-foreground hover:text-green-500 transition-colors">
             <Linkedin className="w-5 h-5" />
           </Link>
-          <Link href="https://twitter.com" className="text-muted-foreground hover:text-green-500 transition-colors">
-            <Twitter className="w-5 h-5" />
+          <Link href="https://facebook.com" className="text-muted-foreground hover:text-green-500 transition-colors">
+            <Facebook className="w-5 h-5" />
           </Link>
         </div>
       </SidebarFooter>
@@ -208,71 +298,152 @@ export default function Portfolio() {
     })
   }
 
+    function DynamicHeading() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % rotatingWords.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [])
+
+ return (
+<div className="mb-10 text-white font-extrabold leading-tight">
+  <h1 className="text-5xl sm:text-6xl md:text-7xl">Hi, I’m JP!</h1>
+  <div className="text-5xl sm:text-6xl md:text-7xl mt-4">
+    I <span className="text-green-500">{rotatingWords[index]}</span>
+  </div>
+  <h2 className="text-5xl sm:text-6xl md:text-7xl mt-2">solutions</h2>
+</div>
+
+  )
+}
   return (
     <SidebarProvider defaultOpen>
-      <div className="flex min-h-screen">
+      <div className="flex w-full max-w-full overflow-x-hidden">
         <AppSidebar />
 
         <main className="flex-1">
           {/* About Section - Dark Theme */}
-          <section id="about" className="min-h-screen bg-gray-900 text-white flex items-center">
-            <div className="container mx-auto px-8 py-16">
+          <section id="home" className="min-h-screen bg-gray-900 text-white flex items-center">
+          <div className="w-full max-w-screen-xl px-8 py-16 mx-auto">
+
               <div className="max-w-4xl">
-                <h1 className="text-5xl font-bold mb-6">
-                  Hi, I'm <span className="text-green-400">John Doe</span>
-                </h1>
-                <h2 className="text-2xl text-gray-300 mb-8">Full Stack Developer</h2>
-                <p className="text-lg text-gray-300 leading-relaxed mb-8">
-                  I'm a passionate full-stack developer with 4+ years of experience creating modern web applications. I
-                  specialize in React, Node.js, and cloud technologies. I love turning complex problems into simple,
-                  beautiful, and intuitive solutions.
-                </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
-                  or sharing my knowledge through technical writing and mentoring.
-                </p>
-                <div className="mt-8">
+               <DynamicHeading />
+<p className="text-lg text-gray-300 leading-relaxed mb-4">
+  I’m a Filipino <strong className="text-green-400">backend-focused full-stack developer</strong>, a software engineer, and a graduating Computer Science student with <strong className="text-green-400">4 years of hands-on experience</strong> building real-world projects.
+</p>
+<p className="text-lg text-gray-300 leading-relaxed mb-4">
+  Whether I’m working with a team or helping clients, I enjoy turning ideas into something that actually works and makes life easier. I'm always excited to learn something new and take on projects that help me grow.
+</p>
+
+
+
+
+
+
+
+            <div className="flex space-x-4 mt-8">
                   <Button
-                    className="bg-green-500 hover:bg-green-600 text-white"
+                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 text-lg"
                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     Get In Touch
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-3 text-lg"
+                    onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    View My Work
                   </Button>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Skills Section - Light Theme */}
-          <section id="skills" className="min-h-screen bg-white flex items-center">
+              {/* About Section - Light Theme */}
+          <section id="about" className="min-h-screen bg-white flex items-center">
             <div className="container mx-auto px-8 py-16">
               <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-                My <span className="text-green-500">Skills</span>
+                About <span className="text-green-500">Me</span>
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                {skills.map((skill) => (
-                  <Card key={skill} className="hover:shadow-lg transition-shadow border-green-100">
-                    <CardContent className="p-6 text-center">
-                      <div className="text-4xl mb-3">{skillIcons[skill as keyof typeof skillIcons]}</div>
-                      <h3 className="font-semibold text-gray-900">{skill}</h3>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                     I'm a curious and driven backend-focused full-stack developer with 4 years of experience building real projects for teams and clients, including websites, admin panels, payroll systems, and web applications. I genuinely enjoy solving problems, especially the ones that make you stop and think a little longer. I'm always exploring new tools, learning new things, and finding better ways to build and improve.
+                  </p>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {aboutInfo.map((info, index) => (
+                    <Card key={index} className="border-green-100 hover:shadow-lg transition-shadow">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span className="text-2xl">{info.icon}</span>
+                        </div>
+                        <h3 className="text-xl font-semibold mb-4 text-gray-900">{info.title}</h3>
+                        <ul className="space-y-2">
+                          {info.items.map((item, itemIndex) => (
+                            <li key={itemIndex} className="text-gray-600 text-sm">
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Projects Section - Dark Theme */}
-          <section id="projects" className="min-h-screen bg-gray-900 text-white flex items-center">
+          {/* Skills Section - Dark Theme */}
+<section id="skills" className="min-h-screen bg-gray-900 text-white flex items-center">
+  <div className="container mx-auto px-8 py-16">
+    <h2 className="text-4xl font-bold text-center mb-12">
+      My <span className="text-green-400">Skills</span>
+    </h2>
+        <div className="text-center mb-12">
+      <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+        Over the years, I’ve worked with a wide range of tools and technologies across the stack. While I specialize in backend development, I enjoy picking up new skills and using the right tools to get the job done well.
+      </p>
+    </div>
+
+    <div className="space-y-16 max-w-6xl mx-auto">
+      {Object.entries(groupedSkills).map(([groupTitle, skills]) => (
+        <div key={groupTitle}>
+          <h3 className="text-2xl font-semibold text-green-400 mb-6">{groupTitle}</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {skills.map((skill) => (
+              <Card key={skill} className="bg-gray-800 border-gray-700 hover:border-green-400 transition-colors">
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">
+                    {skillIcons[skill as keyof typeof skillIcons]}
+                  </div>
+                  <h3 className="font-semibold text-white">{skill}</h3>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+          {/* Projects Section - Light Theme */}
+          <section id="projects" className="min-h-screen bg-white flex items-center">
             <div className="container mx-auto px-8 py-16">
-              <h2 className="text-4xl font-bold text-center mb-12">
-                My <span className="text-green-400">Projects</span>
+              <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+                My <span className="text-green-500">Projects</span>
               </h2>
               <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                {projects.map((project) => (
+              {projects.map((project) => (
                   <Card
                     key={project.id}
-                    className="bg-gray-800 border-gray-700 hover:border-green-400 transition-colors group cursor-pointer"
+                    className="border-green-100 hover:shadow-lg transition-all group cursor-pointer"
                   >
                     <CardContent className="p-0">
                       <div className="relative overflow-hidden">
@@ -287,9 +458,9 @@ export default function Portfolio() {
                           <Link href={project.github} target="_blank" rel="noopener noreferrer">
                             <Button
                               variant="outline"
-                              className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black"
+                              className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
                             >
-                              <Github className="w-4 h-4 mr-2" />
+                               <Github className="w-4 h-4 mr-2" />
                               View Code
                               <ExternalLink className="w-4 h-4 ml-2" />
                             </Button>
@@ -297,8 +468,8 @@ export default function Portfolio() {
                         </div>
                       </div>
                       <div className="p-6">
-                        <h3 className="text-xl font-semibold mb-2 text-white">{project.title}</h3>
-                        <p className="text-gray-300">{project.description}</p>
+                        <h3 className="text-xl font-semibold mb-2 text-gray-900">{project.title}</h3>
+                        <p className="text-gray-600">{project.description}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -307,30 +478,29 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* Work Experience Section - Light Theme */}
-          <section id="experience" className="min-h-screen bg-white flex items-center">
+           {/* Work Experience Section - Dark Theme */}
+          <section id="experience" className="min-h-screen bg-gray-900 text-white flex items-center">
             <div className="container mx-auto px-8 py-16">
-              <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-                Work <span className="text-green-500">Experience</span>
+              <h2 className="text-4xl font-bold text-center mb-12">
+                Work <span className="text-green-400">Experience</span>
               </h2>
               <div className="max-w-4xl mx-auto">
                 <div className="relative">
                   {/* Timeline line */}
-                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-green-500"></div>
+                  <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-green-400"></div>
 
                   {workExperience.map((job, index) => (
                     <div key={index} className="relative flex items-start mb-12">
                       {/* Timeline dot */}
-                      <div className="absolute left-6 w-4 h-4 bg-green-500 rounded-full border-4 border-white shadow-lg"></div>
-
-                      {/* Content */}
+                      <div className="absolute left-6 w-4 h-4 bg-green-400 rounded-full border-4 border-gray-900 shadow-lg"></div>
+                          {/* Content */}
                       <div className="ml-16">
-                        <Badge variant="outline" className="mb-2 border-green-500 text-green-600">
+                        <Badge variant="outline" className="mb-2 border-green-400 text-green-400">
                           {job.year}
                         </Badge>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-1">{job.title}</h3>
-                        <h4 className="text-lg text-green-600 mb-3">{job.company}</h4>
-                        <p className="text-gray-600">{job.description}</p>
+                        <h3 className="text-xl font-semibold text-white mb-1">{job.title}</h3>
+                        <h4 className="text-lg text-green-400 mb-3">{job.company}</h4>
+                        <p className="text-gray-300">{job.description}</p>
                       </div>
                     </div>
                   ))}
@@ -339,53 +509,55 @@ export default function Portfolio() {
             </div>
           </section>
 
-          {/* Contact Section - Dark Theme */}
-          <section id="contact" className="min-h-screen bg-gray-900 text-white flex items-center">
+      
+          {/* Contact Section - Light Theme */}
+          <section id="contact" className="min-h-screen bg-white flex items-center">
             <div className="container mx-auto px-8 py-16">
-              <h2 className="text-4xl font-bold text-center mb-12">
-                Get In <span className="text-green-400">Touch</span>
+              <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+                Get In <span className="text-green-500">Touch</span>
               </h2>
               <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 {/* Contact Info */}
                 <div>
-                  <h3 className="text-2xl font-semibold mb-6 text-green-400">Contact Information</h3>
+                  <h3 className="text-2xl font-semibold mb-6 text-green-500">Contact Information</h3>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
-                      <Mail className="w-5 h-5 text-green-400" />
-                      <span>john.doe@email.com</span>
+                      <Mail className="w-5 h-5 text-green-500" />
+                      <span className="text-gray-700">john.doe@email.com</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Phone className="w-5 h-5 text-green-400" />
-                      <span>+1 (555) 123-4567</span>
+                      <Phone className="w-5 h-5 text-green-500" />
+                      <span className="text-gray-700">+1 (555) 123-4567</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <MapPin className="w-5 h-5 text-green-400" />
-                      <span>San Francisco, CA</span>
+                      <MapPin className="w-5 h-5 text-green-500" />
+                      <span className="text-gray-700">San Francisco, CA</span>
                     </div>
                   </div>
 
                   <div className="mt-8">
-                    <h4 className="text-lg font-semibold mb-4 text-green-400">Follow Me</h4>
+                    <h4 className="text-lg font-semibold mb-4 text-green-500">Follow Me</h4>
                     <div className="flex space-x-4">
-                      <Link href="https://github.com" className="text-gray-300 hover:text-green-400 transition-colors">
+                      <Link href="https://github.com" className="text-gray-600 hover:text-green-500 transition-colors">
                         <Github className="w-6 h-6" />
                       </Link>
                       <Link
                         href="https://linkedin.com"
-                        className="text-gray-300 hover:text-green-400 transition-colors"
+                        className="text-gray-600 hover:text-green-500 transition-colors"
                       >
                         <Linkedin className="w-6 h-6" />
                       </Link>
-                      <Link href="https://twitter.com" className="text-gray-300 hover:text-green-400 transition-colors">
-                        <Twitter className="w-6 h-6" />
+                      <Link href="https://facebook.com" className="text-gray-600 hover:text-green-500 transition-colors">
+                        <Facebook className="w-6 h-6" />
                       </Link>
                     </div>
                   </div>
                 </div>
 
+               
                 {/* Contact Form */}
                 <div>
-                  <h3 className="text-2xl font-semibold mb-6 text-green-400">Send Message</h3>
+                  <h3 className="text-2xl font-semibold mb-6 text-green-500">Send Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <Input
                       type="text"
@@ -394,7 +566,7 @@ export default function Portfolio() {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400"
+                      className="border-gray-300 focus:border-green-500"
                     />
                     <Input
                       type="email"
@@ -403,7 +575,7 @@ export default function Portfolio() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400"
+                                      className="border-gray-300 focus:border-green-500"
                     />
                     <Textarea
                       name="message"
@@ -412,7 +584,7 @@ export default function Portfolio() {
                       onChange={handleInputChange}
                       required
                       rows={5}
-                      className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400"
+                      className="border-gray-300 focus:border-green-500"
                     />
                     <Button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-white">
                       <Send className="w-4 h-4 mr-2" />
