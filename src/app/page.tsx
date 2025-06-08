@@ -569,7 +569,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     <h3 className="text-xl font-semibold text-white mb-2">Think we could turn your next opportunity into my next experience?</h3>
     <p className="text-gray-300 mb-4">Feel free to check out my resume. I'm always open to new opportunities to build, collaborate, and make something meaningful.</p>
     <a
-      href="https://drive.google.com/file/d/1U2Dl4_VnjHVWrKhfRNaonW7wFjGgiOvM/view?usp=sharing"
+      href="https://drive.google.com/file/d/1VErDnBVKvWwCQRqaI6G_AGa3pfGpdkp0/view?usp=sharing"
       target="_blank"
       rel="noopener noreferrer"
       className="inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
