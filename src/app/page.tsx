@@ -149,12 +149,22 @@ const projects = [
     id: 1,
   title: "Estate Doc Prep",
 description: "A document automation platform for generating U.S. living trust documents through guided forms. Supports multiple user roles to manage workflows and assist clients in the estate planning process.",
-  github: null, // or omit this field
+  github: null, 
   private: true,
   image: "/images/projects/estateDocPrep.png?height=200&width=300",
+   live: "https://the-most-comprehensive-living-trust.vercel.app",
+  },
+      {
+    id: 2,
+  title: "Mood! Anong Ulam?",
+description: "A web app that uses your mood to help you decide what to eat when you're unsure. Through a quick quiz, it suggests Filipino dishes that offer comfort and make food choices more meaningful and enjoyable.",
+  github: "https://github.com/jaypeepeep/Mood-Anong-Ulam", 
+  private: false,
+  image: "/images/projects/moodAnongUlam.png?height=200&width=300",
+   live: "https://mood-anong-ulam.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Ibaybay Mo Isasalin Ko",
     description: "This project provides an easy-to-use tool for converting between Baybayin and Latin scripts, with features like bidirectional translation, handwriting recognition, and virtual keyboards for both scripts.",
     github: "https://github.com/jaypeepeep/Ibaybay-Mo-Isasalin-Ko",
@@ -162,7 +172,7 @@ description: "A document automation platform for generating U.S. living trust do
     image: "/images/projects/imik.png?height=200&width=300",
   },
   {
-    id: 3,
+    id: 4,
     title: "D’Tilapia Compiler",
     description: "A compiler designed for a proposed programming language, D'Tilapia, inspired by discrete mathematics. The project features a lexical and syntax analyzer for processing and understanding code, along with a user-friendly interface.",
     github: "https://github.com/jaypeepeep/D-Tilapia-Compiler",
@@ -170,7 +180,7 @@ description: "A document automation platform for generating U.S. living trust do
     image: "/images/projects/dTilapia.png?height=200&width=300",
   },
   {
-    id: 4,
+    id: 5,
     title: "DoorMe",
     description: "This website helps students find dormitories near their university. It offers easy registration, login, and interactive maps with customizable filters to find the best housing options.",
     github: "https://github.com/jaypeepeep/DoorMe",
@@ -178,7 +188,7 @@ description: "A document automation platform for generating U.S. living trust do
     image: "/images/projects/doorMe.png?height=200&width=300",
   },
   {
-    id: 5,
+    id: 6,
     title: "Komyu-Sagip",
     description: "This app helps you stay safe with three ways to ask for help: anonymously, by posting, or in an emergency. Its social media features make it easy to share information and get quick responses when needed.",
     github: "https://github.com/jaypeepeep/Komyu-Sagip-Mobile-Application",
@@ -186,7 +196,7 @@ description: "A document automation platform for generating U.S. living trust do
     image: "/images/projects/komyuSagip.png?height=200&width=300",
   },
     {
-    id: 6,
+    id: 7,
     title: "SC-β-VAE-GAN",
     description: "A tool that helps generate and fix missing handwriting data from pen tablets. The tool makes it easier to work with small or incomplete datasets, improving data accuracy and usability through a simple interface.",
     github: "https://github.com/jaypeepeep/SC-Beta-VAE-GAN",
@@ -507,26 +517,48 @@ const handleSubmit = async (e: React.FormEvent) => {
                           height={200}
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform"
                         />
-                        <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                     {project.github ? (
-  <Link href={project.github} target="_blank" rel="noopener noreferrer">
-    <Button
-      variant="outline"
-      className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
-    >
-      <Github className="w-4 h-4 mr-2" />
-      View Code
-      <ExternalLink className="w-4 h-4 ml-2" />
-    </Button>
-  </Link>
-) : project.private ? (
-  <div className="text-sm text-gray-300 italic">Private repository</div>
-) : null}
-                        </div>
+               <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center space-y-2">
+  {project.github ? (
+    <Link href={project.github} target="_blank" rel="noopener noreferrer">
+      <Button
+        variant="outline"
+        className="border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
+      >
+        <Github className="w-4 h-4 mr-2" />
+        View Code
+        <ExternalLink className="w-4 h-4 ml-2" />
+      </Button>
+    </Link>
+  ) : project.private ? (
+    <div className="text-sm text-gray-300 italic">Private repository</div>
+  ) : null}
+
+  {project.live && (
+    <Link href={project.live} target="_blank" rel="noopener noreferrer">
+      <Button
+        variant="outline"
+        className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+      >
+        Live Site
+        <ExternalLink className="w-4 h-4 ml-2" />
+      </Button>
+    </Link>
+  )}
+</div>
+
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold mb-2 text-gray-900">{project.title}</h3>
                         <p className="text-gray-600">{project.description}</p>
+                        {project.live && (
+  <div className="mt-4">
+    <Link href={project.live} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline inline-flex items-center">
+      Visit Live Site
+      <ExternalLink className="w-4 h-4 ml-1" />
+    </Link>
+  </div>
+)}
+
                       </div>
                     </CardContent>
                   </Card>
